@@ -10,7 +10,7 @@ class FileUploadController extends Controller
     public function fileUpload(){
         return view('file-upload');
     }
-    // Jobsheet 12 - A.Persiapan Awal
+    // Jobsheet 12 - A. Persiapan Awal
     // public function prosesFileUpload(Request $request){
     //     return "Pemrosesan file upload di sini";
     // }
@@ -20,25 +20,30 @@ class FileUploadController extends Controller
     //    dump($request->berkas);
     //    dump($request->file('file'));
         
-    if($request->hasFile('berkas'))
-     {
-         echo "path(): ".$request->berkas->path();
-         echo "<br>";
-         echo "extension(): ".$request->berkas->extension();
-         echo "<br>";
-         echo "getClientOriginalExtension(): ".
-            $request->berkas->getClientOriginalExtension();
-         echo "<br>";
-         echo "getMimeType(): ".$request->berkas->getMimeType();
-         echo "<br>";
-         echo "getClientOriginalName(): ".
-             $request->berkas->getClientOriginalName();
-         echo "<br>";
-         echo "getSize(): ".$request->berkas->getSize();
-     }
-     else
-     {
-         echo "Tidak ada berkas yang diupload";
-     }
+    // if($request->hasFile('berkas'))
+    //  {
+    //      echo "path(): ".$request->berkas->path();
+    //      echo "<br>";
+    //      echo "extension(): ".$request->berkas->extension();
+    //      echo "<br>";
+    //      echo "getClientOriginalExtension(): ".
+    //         $request->berkas->getClientOriginalExtension();
+    //      echo "<br>";
+    //      echo "getMimeType(): ".$request->berkas->getMimeType();
+    //      echo "<br>";
+    //      echo "getClientOriginalName(): ".
+    //          $request->berkas->getClientOriginalName();
+    //      echo "<br>";
+    //      echo "getSize(): ".$request->berkas->getSize();
+    //  }
+    //  else
+    //  {
+    //      echo "Tidak ada berkas yang diupload";
+    //  }
+
+    // Jobsheet 12 - C. Validasi File Upload
+    $request->validate([
+        'berkas'=>'required|file|image|max:500',]);
+        echo $request->berkas->getClientOriginalName()."lolos validasi";
     }
 }
