@@ -44,6 +44,16 @@ class FileUploadController extends Controller
     // Jobsheet 12 - C. Validasi File Upload
     $request->validate([
         'berkas'=>'required|file|image|max:500',]);
-        echo $request->berkas->getClientOriginalName()."lolos validasi";
+    //    $path = $request->berkas->store('uploads');
+
+        // Jobsheet 12 - D. Memindah File Upload
+        $extfile=$request->berkas->getClientOriginalName();
+        $namaFile='web-' .time().".".$extfile;
+    //    $path = $request->berkas->storeAs('uploads', 'berkas');
+        $path = $request->berkas->storeAs('uploads', $namaFile);
+        echo "proses upload berhasil, data disimpan pada: $path ";
+    //   echo "proses upload berhasil, file berada di: $path ";
+    //   echo $request->berkas->getClientOriginalName()."lolos validasi";
+
     }
 }
