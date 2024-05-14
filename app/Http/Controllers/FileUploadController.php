@@ -43,12 +43,17 @@ class FileUploadController extends Controller
 
     // Jobsheet 12 - C. Validasi File Upload
     $request->validate([
-        'berkas'=>'required|file|image|max:500',]);
+        'nama_gambar'=>'required', //Jobsheet 12 - Tugas
+        'berkas'=>'required|file|image|max:500',
+    ]);
+
+    $extension = $request->berkas->getClientOriginalExtension();
+    $namaFile = $request->nama_gambar.'.'.$extension;
     //    $path = $request->berkas->store('uploads');
 
         // Jobsheet 12 - D. Memindah File Upload
-        $extfile=$request->berkas->getClientOriginalName();
-        $namaFile='web-' .time().".".$extfile;
+    //    $extfile=$request->berkas->getClientOriginalName();
+    //    $namaFile='web-' .time().".".$extfile;
     //    $path = $request->berkas->storeAs('uploads', 'berkas');
 
         // Jobsheet 12 - E. Membuat Symlink
@@ -63,11 +68,11 @@ class FileUploadController extends Controller
         // Jobsheet 12 - F. Method Move
         $path = $request->berkas->move('gambar', $namaFile);
         $path =str_replace("\\","//", $path);
-        echo"Variabel path berisi: $path <br>";
+    //    echo"Variabel path berisi: $path <br>";
 
         $pathBaru=asset('gambar/' .$namaFile);
-        echo "proses upload berhasil, data disimpan pada: $path ";
+        echo "Gambar berhasil di upload ke:<a href='$pathBaru' >$namaFile</a> ";
         echo "<br>";
-        echo "Tampilkan link:<a href='$pathBaru'>$pathBaru</a>";
+        echo "<img src='$pathBaru' alt='$namaFile' style='max-width: 500px; height: auto;'>";
     }
 }

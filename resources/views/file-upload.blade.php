@@ -9,7 +9,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>File Upload</title>
 </head>
-
 <body>
 
     <div class="container mt-3">
@@ -18,6 +17,14 @@
 
         <form action="{{ url('/file-upload') }}" method="POST" enctype="multipart/form-data">
             @csrf
+
+            <div class="mb-3">
+                <label for="namaGambar" class="form-label">Nama Gambar</label>
+                <input type="text" class="form-control" id="nama_gambar" name="nama_gambar">
+                @error('nama_gambar')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
 
             <div class="mb-3">
                 <label for="berkas" class="form-label">Gambar Profile</label>
