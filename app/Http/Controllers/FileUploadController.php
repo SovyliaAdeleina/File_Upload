@@ -10,8 +10,35 @@ class FileUploadController extends Controller
     public function fileUpload(){
         return view('file-upload');
     }
-    // Jobsheet 13 - A.Persiapan Awal
+    // Jobsheet 12 - A.Persiapan Awal
+    // public function prosesFileUpload(Request $request){
+    //     return "Pemrosesan file upload di sini";
+    // }
+
+    //Jobsheet 12 - B. Infromasi FIle Upload
     public function prosesFileUpload(Request $request){
-        return "Pemrosesan file upload di sini";
+    //    dump($request->berkas);
+    //    dump($request->file('file'));
+        
+    if($request->hasFile('berkas'))
+     {
+         echo "path(): ".$request->berkas->path();
+         echo "<br>";
+         echo "extension(): ".$request->berkas->extension();
+         echo "<br>";
+         echo "getClientOriginalExtension(): ".
+            $request->berkas->getClientOriginalExtension();
+         echo "<br>";
+         echo "getMimeType(): ".$request->berkas->getMimeType();
+         echo "<br>";
+         echo "getClientOriginalName(): ".
+             $request->berkas->getClientOriginalName();
+         echo "<br>";
+         echo "getSize(): ".$request->berkas->getSize();
+     }
+     else
+     {
+         echo "Tidak ada berkas yang diupload";
+     }
     }
 }
